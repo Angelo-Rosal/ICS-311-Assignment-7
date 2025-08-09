@@ -5,7 +5,7 @@ METHOD_RLE = "rle"
 CHARSET = "utf-8"
 
 def _rle_encode_bytes(raw: bytes) -> bytes:
-    """Encode bytes with classic run-length encoding -> ASCII like b'3a4b2c'."""
+    """Encode bytes with run-length encoding -> ASCII like b'3a4b2c'."""
     if not raw:
         return b""
     out = bytearray()
