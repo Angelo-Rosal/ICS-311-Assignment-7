@@ -32,12 +32,8 @@ def lossy_fft_compress(text: str, keep_ratio: float = 0.5) -> str:
     # apply inverse FFT
     approx_numeric = np.fft.ifft(filtered).real
 
-    # downsample to make message shorter
-    step = max(1, int(1 / keep_ratio))
-    downsampled = approx_numeric[::step]
-
     # convert back to text, staying within valid Unicode range
-    approx_text = ''.join(chr(int(max(0, min(round(x), 1114111)))) for x in downsampled)
+    approx_text = ''.join(chr(int(max(0, min(round(x), 1114111)))) for x in approx_numeric)
     return approx_text
 
 # create graph and users
@@ -52,5 +48,4 @@ msg = g.send_message(alice.id, john.id, text, compression_ratio=0.3)
 # print results
 print("Sent Message:", text)
 print("Compressed message (bytes):", msg.body)
-print("Compressed message length:", len(msg.body))
 print("Metadata:", msg.metadata)
