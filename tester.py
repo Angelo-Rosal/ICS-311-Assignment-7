@@ -1,4 +1,4 @@
-import mainVer2 as m
+import runLengthEncoding as m
 
 cases = [
     "aaabbbbccaaa",
